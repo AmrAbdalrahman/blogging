@@ -72,6 +72,10 @@
             </div>
         </nav>
 
+        @if(Session::has('error'))
+            <div class="alert alert-danger"><span class="glyphicon glyphicon-ok"></span><em> {!! session('error') !!}</em></div>
+        @endif
+
         <main class="py-4">
             @yield('content')
         </main>

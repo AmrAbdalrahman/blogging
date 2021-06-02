@@ -10,6 +10,11 @@ This task was build using [Laravel](https://laravel.com/docs/7.x)
 - run `npm run install`
 - run `php artisan config:cache`
 
-#Admin account
-Email : amr@admin.com
-Password : 12345678
+# seeds
+
+- run `php artisan db:seed `
+
+# Admin account
+
+- Email : amr@admin.com
+- Password : 12345678

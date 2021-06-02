@@ -11,6 +11,7 @@
 |
 */
 
-Route::prefix('category')->group(function() {
-    Route::get('/', 'CategoryController@index');
+Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin/category'], function () {
+
+    Route::get('/', ['as' => 'categories.index', 'uses' => 'CategoryController@index']);
 });
