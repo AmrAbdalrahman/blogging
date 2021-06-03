@@ -10,41 +10,31 @@ interface EntityRepositoryInterface
     /**
      * @return mixed
      */
-    public function index();
+    public function all();
 
     /**
+     * @param AbstractRequest $request
      * @return mixed
      */
-//    public function create();
-//
-//    /**
-//     * @param AbstractRequest $request
-//     * @return mixed
-//     */
-//    public function store(AbstractRequest $request);
-//
-//    /**
-//     * @param $id
-//     * @return mixed
-//     */
-//    public function show($id);
-//
-//    /**
-//     * @param $id
-//     * @return mixed
-//     */
-//    public function edit($id);
-//
-//    /**
-//     * @param AbstractRequest $request
-//     * @return mixed
-//     */
-//    public function update(AbstractRequest $request);
-//
-//    /**
-//     * @param $id
-//     * @return mixed
-//     */
-//    public function destroy($id);
+    public function create(AbstractRequest $request);
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function get($id);
+
+    /**
+     * @param AbstractRequest $request
+     * @param $id
+     * @return mixed
+     */
+    public function update(AbstractRequest $request, $id);
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function destroy($id);
 
 }
