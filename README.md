@@ -1,4 +1,4 @@
-This task was build using [Laravel](https://laravel.com/docs/7.x)
+This task was built using [Laravel](https://laravel.com/docs/7.x)
 
 # Steps to run The project
 
