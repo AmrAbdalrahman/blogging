@@ -49,7 +49,7 @@ class CategoryController extends Controller
      * Show the form for creating a new resource.
      * @return Renderable
      */
-    public function create()
+    public function create(): Renderable
     {
         return view('category::add');
     }
@@ -70,7 +70,7 @@ class CategoryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show($id)
+    public function show(int $id): Renderable
     {
         $category = $this->categoryRepository->get($id);
         return view('category::show', compact('category'));
@@ -81,7 +81,7 @@ class CategoryController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit($id)
+    public function edit(int $id): Renderable
     {
         $category = $this->categoryRepository->get($id);
         return view('category::edit', compact('category'));
@@ -93,7 +93,7 @@ class CategoryController extends Controller
      * @param int $id
      * @return \Illuminate\Contracts\Foundation\Application|Renderable|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(CategoryRequest $request, $id)
+    public function update(CategoryRequest $request, int $id)
     {
         $this->categoryRepository->update($request, $id);
         return redirect('admin/category');
@@ -104,7 +104,7 @@ class CategoryController extends Controller
      * @param int $id
      * @return \Illuminate\Contracts\Foundation\Application|Renderable|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $this->categoryRepository->destroy($id);
         return redirect('admin/category');

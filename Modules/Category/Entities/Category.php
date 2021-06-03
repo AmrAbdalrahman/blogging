@@ -8,7 +8,7 @@ class Category extends Model
 {
     protected $fillable = ['name'];
 
-    function articles()
+    function articles(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany('Modules\Article\Entities\Article');
     }

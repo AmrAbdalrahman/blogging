@@ -38,30 +38,30 @@ class CategoryRepository implements EntityRepositoryInterface
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return mixed
      */
-    public function get($id)
+    public function get(int $id)
     {
         return $this->category->find($id);
     }
 
     /**
      * @param AbstractRequest $request
-     * @param $id
+     * @param int $id
      * @return mixed|void
      */
-    public function update(AbstractRequest $request, $id)
+    public function update(AbstractRequest $request, int $id)
     {
         $category = $this->get($id);
         $category->update($request->all());
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return mixed
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         return $this->category->find($id)->delete();
     }

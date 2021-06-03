@@ -61,7 +61,7 @@ class ArticleController extends Controller
      * Show the form for creating a new resource.
      * @return Renderable
      */
-    public function create()
+    public function create(): Renderable
     {
         $categories = $this->categoryRepository->getAllCategoriesPluck();
         return view('article::add', compact('categories'));
@@ -83,7 +83,7 @@ class ArticleController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function show($id)
+    public function show(int $id): Renderable
     {
         $article = $this->articleRepository->get($id);
         return view('article::show', compact('article'));
@@ -94,7 +94,7 @@ class ArticleController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit($id)
+    public function edit(int $id): Renderable
     {
         $categories = $this->categoryRepository->getAllCategoriesPluck();
         $article = $this->articleRepository->get($id);
@@ -107,7 +107,7 @@ class ArticleController extends Controller
      * @param int $id
      * @return \Illuminate\Contracts\Foundation\Application|Renderable|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(ArticleRequest $request, $id)
+    public function update(ArticleRequest $request,int $id)
     {
         $this->articleRepository->update($request, $id);
         return redirect('admin/article');
@@ -118,17 +118,17 @@ class ArticleController extends Controller
      * @param int $id
      * @return \Illuminate\Contracts\Foundation\Application|Renderable|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $this->articleRepository->destroy($id);
         return redirect('admin/article');
     }
 
     /**
-     * @param $category_id
+     * @param int $category_id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function categoryFilter($category_id)
+    public function categoryFilter(int $category_id)
     {
         $categories = $this->categoryRepository->getAll();
         $articles = $this->articleRepository->filterByCategory($category_id);
@@ -136,10 +136,10 @@ class ArticleController extends Controller
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function articleComments($id)
+    public function articleComments(int $id)
     {
         $article = $this->articleRepository->getWithComments($id);
         return view('article::articleComments', compact('article'));
