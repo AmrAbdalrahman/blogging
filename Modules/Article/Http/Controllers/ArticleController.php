@@ -121,4 +121,11 @@ class ArticleController extends Controller
         $this->articleRepository->destroy($id);
         return redirect('admin/article');
     }
+
+    public function categoryFilter($category_id)
+    {
+        $categories = $this->categoryRepository->getAll();
+        $articles = $this->articleRepository->filterByCategory($category_id);
+        return view('home', compact('categories', 'articles', 'category_id'));
+    }
 }

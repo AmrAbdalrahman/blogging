@@ -2,18 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Modules\Article\Repositories\ArticleRepository;
+use Modules\Category\Repositories\CategoryRepository;
 
 class HomeController extends Controller
 {
+    private $categoryRepository;
+    private $articleRepository;
+
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * HomeController constructor.
+     * @param CategoryRepository $categoryRepository
+     * @param ArticleRepository $articleRepository
      */
-    public function __construct()
+    public function __construct(CategoryRepository $categoryRepository, ArticleRepository $articleRepository)
     {
-        $this->middleware('auth');
+        $this->categoryRepository = $categoryRepository;
+        $this->articleRepository = $articleRepository;
     }
 
     /**
@@ -21,18 +26,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(): \Illuminate\Contracts\Support\Renderable
     {
-        return view('home');
+        $categories = $this->categoryRepository->getAll();
+        $articles = $this->articleRepository->paginate();
+        return view('home', compact('categories', 'articles'));
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function adminHome(): \Illuminate\Contracts\Support\Renderable
-    {
-        return view('adminHome');
-    }
 }

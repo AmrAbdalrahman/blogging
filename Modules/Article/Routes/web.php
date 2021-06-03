@@ -22,3 +22,11 @@ Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin/article'], functi
     Route::get('destroy/{id}', ['as' => 'articles.destroy', 'uses' => 'ArticleController@destroy']);
 });
 
+
+Route::group(['prefix' => 'article'], function () {
+
+    Route::get('filterByCategory/{category_id}', ['as' => 'articles.categoryFilter', 'uses' => 'ArticleController@categoryFilter']);
+});
+
+
+

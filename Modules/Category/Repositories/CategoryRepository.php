@@ -73,4 +73,12 @@ class CategoryRepository implements EntityRepositoryInterface
     {
         return $this->category->pluck('name', 'id');
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAll()
+    {
+        return $this->category->orderBy('created_at', 'DESC')->get();
+    }
 }

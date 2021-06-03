@@ -66,8 +66,29 @@ class ArticleRepository implements EntityRepositoryInterface
         return $this->article->find($id)->delete();
     }
 
+    /**
+     * @param $status
+     * @return mixed
+     */
     public function filterByPublishStatus($status)
     {
         return $this->article->where('is_published', $status)->get();
     }
+
+    /**
+     * @return mixed
+     */
+    public function paginate()
+    {
+        return $this->article->paginate(5);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function filterByCategory($id)
+    {
+        return $this->article->where('category_id', $id)->paginate(5);
+    }
+
 }
