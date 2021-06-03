@@ -19,7 +19,20 @@ This task was build using [Laravel](https://laravel.com/docs/7.x)
 - Email : amr@admin.com
 - Password : 12345678
 
-#Routes
+# Docker
+
+- renaming .env.example to .env
+- run `docker-compose up -d`
+- run `docker exec -it bloggingapp bash`
+- run `composer install`
+- run `composer dump-autoload`
+- run `npm run dev`
+- run `npm run install`
+- run `php artisan config:cache`
+- the base url is 'http://127.0.0.1:8080'
+
+# Routes
+
 - http://127.0.0.1:8000/
 - http://127.0.0.1:8000/admin/category
 - http://127.0.0.1:8000/admin/article
