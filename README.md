@@ -5,6 +5,7 @@ This task was build using [Laravel](https://laravel.com/docs/7.x)
 - git clone of the master branch
 - renaming .env.example to .env
 - run `composer install`
+- run `php artisan migrate`
 - run `composer dump-autoload`
 - run `npm run dev`
 - run `npm run install`
