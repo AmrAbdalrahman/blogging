@@ -1,23 +1,23 @@
 <?php
 
-namespace Modules\Category\Repositories;
+namespace Modules\Article\Repositories;
 
 use App\Http\Requests\AbstractRequest;
 use App\Interfaces\EntityRepositoryInterface;
-use Modules\Category\Entities\Category;
+use Modules\Article\Entities\Article;
 
-class CategoryRepository implements EntityRepositoryInterface
+class ArticleRepository implements EntityRepositoryInterface
 {
 
-    private $category;
+    private $article;
 
     /**
      * CategoryRepository constructor.
-     * @param Category $category
+     * @param Article $article
      */
-    public function __construct(Category $category)
+    public function __construct(Article $article)
     {
-        $this->category = $category;
+        $this->article = $article;
     }
 
     /**
@@ -25,7 +25,7 @@ class CategoryRepository implements EntityRepositoryInterface
      */
     public function all()
     {
-        return $this->category->orderBy('created_at', 'DESC');
+        return $this->article->orderBy('created_at', 'DESC');
     }
 
     /**
@@ -34,7 +34,7 @@ class CategoryRepository implements EntityRepositoryInterface
      */
     public function create(AbstractRequest $request)
     {
-        $this->category->create($request->all());
+        $this->article->create($request->all());
     }
 
     /**
@@ -43,7 +43,7 @@ class CategoryRepository implements EntityRepositoryInterface
      */
     public function get($id)
     {
-        return $this->category->find($id);
+        return $this->article->find($id);
     }
 
     /**
@@ -63,14 +63,11 @@ class CategoryRepository implements EntityRepositoryInterface
      */
     public function destroy($id)
     {
-        return $this->category->find($id)->delete();
+        return $this->article->find($id)->delete();
     }
 
-    /**
-     * @return mixed
-     */
-    public function getAllCategoriesPluck()
+    public function filterByPublishStatus($status)
     {
-        return $this->category->pluck('name', 'id');
+        return $this->article->where('is_published', $status)->get();
     }
 }

@@ -12,6 +12,10 @@ class CategoryController extends Controller
 {
     private $categoryRepository;
 
+    /**
+     * CategoryController constructor.
+     * @param CategoryRepository $categoryRepository
+     */
     public function __construct(CategoryRepository $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
@@ -85,7 +89,7 @@ class CategoryController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param Request $request
+     * @param CategoryRequest $request
      * @param int $id
      * @return \Illuminate\Contracts\Foundation\Application|Renderable|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */

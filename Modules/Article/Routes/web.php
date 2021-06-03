@@ -11,6 +11,14 @@
 |
 */
 
-Route::prefix('article')->group(function() {
-    Route::get('/', 'ArticleController@index');
+Route::group(['middleware' => ['is_admin'], 'prefix' => 'admin/article'], function () {
+
+    Route::get('/', ['as' => 'articles.index', 'uses' => 'ArticleController@index']);
+    Route::get('create', ['as' => 'articles.create', 'uses' => 'ArticleController@create']);
+    Route::post('create', ['as' => 'articles.store', 'uses' => 'ArticleController@store']);
+    Route::get('{id}', ['as' => 'articles.show', 'uses' => 'ArticleController@show']);
+    Route::get('{id}/edit', ['as' => 'articles.edit', 'uses' => 'ArticleController@edit']);
+    Route::put('{id}', ['as' => 'articles.update', 'uses' => 'ArticleController@update']);
+    Route::get('destroy/{id}', ['as' => 'articles.destroy', 'uses' => 'ArticleController@destroy']);
 });
+
