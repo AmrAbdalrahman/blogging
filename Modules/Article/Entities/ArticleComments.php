@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ArticleComments extends Model
 {
 
-    protected $fillable = [];
+    protected $fillable = ['comment', 'user_id', 'article_id'];
 
 }

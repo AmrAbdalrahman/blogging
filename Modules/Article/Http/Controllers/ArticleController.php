@@ -5,7 +5,9 @@ namespace Modules\Article\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Modules\Article\Http\Requests\ArticleRequest;
+use Modules\Article\Http\Requests\CommentRequest;
 use Modules\Article\Repositories\ArticleRepository;
 use Modules\Category\Repositories\CategoryRepository;
 
@@ -122,10 +124,35 @@ class ArticleController extends Controller
         return redirect('admin/article');
     }
 
+    /**
+     * @param $category_id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function categoryFilter($category_id)
     {
         $categories = $this->categoryRepository->getAll();
         $articles = $this->articleRepository->filterByCategory($category_id);
         return view('home', compact('categories', 'articles', 'category_id'));
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function articleComments($id)
+    {
+        $article = $this->articleRepository->getWithComments($id);
+        return view('article::articleComments', compact('article'));
+    }
+
+    /**
+     * @param CommentRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function addComment(CommentRequest $request): \Illuminate\Http\RedirectResponse
+    {
+        $request['user_id'] = Auth::user()->id;
+        $this->articleRepository->addComment($request);
+        return redirect()->back();
     }
 }

@@ -16,9 +16,10 @@
             @foreach($articles as $article)
 
                 <h1>{{$article->title}}</h1>
-                <p>{{$article->description}}</p>
+                <p>{{ Illuminate\Support\Str::limit($article->description, 50, $end='...') }}</p>
                 <div>
                     <span class="badge">{{$article->created_at}}</span>
+                    <a href="{{route('articles.comments',$article->id)}}">Read more</a>
                     <hr>
 
                 </div>

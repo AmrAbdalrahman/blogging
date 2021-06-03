@@ -5,19 +5,23 @@ namespace Modules\Article\Repositories;
 use App\Http\Requests\AbstractRequest;
 use App\Interfaces\EntityRepositoryInterface;
 use Modules\Article\Entities\Article;
+use Modules\Article\Entities\ArticleComments;
 
 class ArticleRepository implements EntityRepositoryInterface
 {
 
     private $article;
+    private $articleComments;
 
     /**
      * CategoryRepository constructor.
      * @param Article $article
+     * @param ArticleComments $articleComments
      */
-    public function __construct(Article $article)
+    public function __construct(Article $article, ArticleComments $articleComments)
     {
         $this->article = $article;
+        $this->articleComments = $articleComments;
     }
 
     /**
@@ -91,4 +95,17 @@ class ArticleRepository implements EntityRepositoryInterface
         return $this->article->where('category_id', $id)->paginate(5);
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getWithComments($id)
+    {
+        return $this->article->where('id', $id)->with('comments')->firstOrFail();
+    }
+
+    public function addComment(AbstractRequest $request)
+    {
+        $this->articleComments->create($request->all());
+    }
 }
