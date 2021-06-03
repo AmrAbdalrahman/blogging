@@ -27,6 +27,11 @@
             <a class="navbar-brand" href="{{ url('/') }}">
                 Blogging
             </a>
+
+            @if(Auth::user() && Auth::user()->is_admin)
+                <a class="navbar-brand" href="{{route('categories.index')}}">Manage Categories</a>
+                <a class="navbar-brand" href="{{route('articles.index')}}">Manage Articles</a>
+            @endif
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="{{ __('Toggle navigation') }}">

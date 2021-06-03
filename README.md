@@ -18,3 +18,8 @@ This task was build using [Laravel](https://laravel.com/docs/7.x)
 
 - Email : amr@admin.com
 - Password : 12345678
+
+#Routes
+- http://127.0.0.1:8000/
+- http://127.0.0.1:8000/admin/category
+- http://127.0.0.1:8000/admin/article
